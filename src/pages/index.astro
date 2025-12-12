@@ -1,11 +1,174 @@
 ---
-import Welcome from '../components/Welcome.astro';
+// Main portfolio page
 import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import VideoCard from '../components/VideoCard.astro';
+import PhotoCard from '../components/PhotoCard.astro';
+import CompanyCard from '../components/CompanyCard.astro';
+import Footer from '../components/Footer.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Import data
+import { videos } from '../data/videos';
+import { photoProjects } from '../data/photos';
+import { projects } from '../data/projects';
+import { companies } from '../data/companies';
 ---
 
 <Layout>
-	<Welcome />
+	<Navbar />
+	<Hero />
+
+	<!-- Videos Section -->
+	<section id="videos">
+		<div class="container">
+			<SectionHeader title="Videos" />
+			<div class="grid grid-3">
+				{videos.map((video) => (
+					<VideoCard video={video} />
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Photography Section -->
+	<section id="photography">
+		<div class="container">
+			<SectionHeader title="Photography" />
+			<div class="grid grid-3">
+				{photoProjects.map((photo) => (
+					<PhotoCard photo={photo} />
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Projects Section -->
+	<section id="projects">
+		<div class="container">
+			<SectionHeader title="Projects" />
+			<div class="projects-list">
+				{projects.map((project) => (
+					<div class="project-item">
+						{project.thumbnailUrl && (
+							<div class="project-thumbnail">
+								<img src={project.thumbnailUrl} alt={project.title} loading="lazy" />
+							</div>
+						)}
+						<div class="project-content">
+							<h3 class="project-title">{project.title}</h3>
+							<p class="project-description">{project.description}</p>
+							{project.link && (
+								<a href={project.link} target="_blank" rel="noopener noreferrer" class="project-link">
+									{project.linkLabel || 'Learn More'} →
+								</a>
+							)}
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<!-- Collaborations Section -->
+	<section id="collaborations">
+		<div class="container">
+			<SectionHeader title="Collaborations" />
+			<div class="grid">
+				{companies.map((company) => (
+					<CompanyCard company={company} />
+				))}
+			</div>
+		</div>
+	</section>
+
+	<Footer />
 </Layout>
+
+<style>
+	/* Additional styles for index page */
+	section {
+		scroll-margin-top: 80px; /* Account for sticky navbar */
+	}
+
+	.projects-list {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+	.project-item {
+		background-color: var(--card-bg);
+		border-radius: 12px;
+		padding: 2rem;
+		margin-bottom: 2rem;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+		transition: all 0.3s ease;
+		display: flex;
+		gap: 2rem;
+		align-items: flex-start;
+	}
+
+	.project-item:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+	}
+
+	.project-thumbnail {
+		flex-shrink: 0;
+		width: 280px;
+		height: 180px;
+		border-radius: 8px;
+		overflow: hidden;
+		background: linear-gradient(135deg, var(--accent) 0%, #e8b49a 100%);
+	}
+
+	.project-thumbnail img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.3s ease;
+	}
+
+	.project-item:hover .project-thumbnail img {
+		transform: scale(1.05);
+	}
+
+	.project-content {
+		flex: 1;
+	}
+
+	.project-title {
+		font-size: 1.5rem;
+		color: var(--text-main);
+		margin-bottom: 1rem;
+	}
+
+	.project-description {
+		color: var(--text-secondary);
+		line-height: 1.6;
+		margin-bottom: 1rem;
+	}
+
+	.project-link {
+		color: var(--accent);
+		font-weight: 500;
+		transition: color 0.3s ease;
+	}
+
+	.project-link:hover {
+		color: var(--accent-hover);
+	}
+
+	@media (max-width: 768px) {
+		.project-item {
+			flex-direction: column;
+		}
+
+		.project-thumbnail {
+			width: 100%;
+			height: 200px;
+		}
+	}
+</style>
+

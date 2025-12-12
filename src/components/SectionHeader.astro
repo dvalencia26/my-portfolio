@@ -1,0 +1,34 @@
+---
+// Section header component for consistent section titles
+interface Props {
+  title: string;
+  id?: string;
+}
+
+const { title, id } = Astro.props;
+---
+
+<div class="section-header" id={id}>
+  <h2>{title}</h2>
+  <div class="section-divider"></div>
+</div>
+
+<style>
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .section-header h2 {
+    margin-bottom: 1rem;
+    color: var(--text-main);
+  }
+
+  .section-divider {
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent);
+    margin: 0 auto;
+    border-radius: 2px;
+  }
+</style>

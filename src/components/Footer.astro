@@ -1,0 +1,72 @@
+---
+// Footer component
+---
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-content">
+      <p class="footer-name">Domenica Valencia</p>
+      <p class="footer-copyright">© {new Date().getFullYear()} All rights reserved.</p>
+    </div>
+    <div class="footer-links">
+      <a href="https://mail.google.com/mail/?view=cm&to=domenicav2004@gmail.com" target="_blank" rel="noopener noreferrer" class="social-link" title="Email">
+        Email
+      </a>
+      <a href="https://www.linkedin.com/in/domenica-valencia/" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">
+        LinkedIn
+      </a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--card-bg);
+    border-top: 1px solid var(--border-color);
+    padding: 3rem 1.5rem 2rem;
+    margin-top: 4rem;
+  }
+
+  .footer-container {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .footer-content {
+    text-align: left;
+  }
+
+  .footer-name {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 0.25rem;
+  }
+
+  .footer-copyright {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .footer-container {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .footer-content {
+      text-align: center;
+    }
+  }
+</style>

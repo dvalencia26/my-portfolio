@@ -1,0 +1,79 @@
+---
+// Photo card component
+import type { PhotoProject } from '../data/photos';
+
+interface Props {
+  photo: PhotoProject;
+}
+
+const { photo } = Astro.props;
+---
+
+<div class="card">
+  <a href={photo.linkUrl} target="_blank" rel="noopener noreferrer" class="thumbnail-link">
+    <div class="card-thumbnail">
+      {photo.thumbnailUrl ? (
+        <>
+          <img src={photo.thumbnailUrl} alt={photo.title} loading="lazy" />
+        </>
+      ) : (
+        <span>📷</span>
+      )}
+    </div>
+  </a>
+  <h3 class="card-title">{photo.title}</h3>
+  <p class="card-meta">{photo.locationOrContext}</p>
+  <p class="card-description">{photo.description}</p>
+  <div class="card-actions">
+    <a href={photo.linkUrl} target="_blank" rel="noopener noreferrer" class="btn btn-small">
+      View Gallery
+    </a>
+  </div>
+</div>
+
+<style>
+  .thumbnail-link {
+    text-decoration: none;
+    display: block;
+    position: relative;
+  }
+
+  .card-thumbnail {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-thumbnail img {
+    transition: transform 0.3s ease;
+  }
+
+  .thumbnail-link:hover .card-thumbnail img {
+    transform: scale(1.05);
+  }
+
+  .gallery-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background-color: rgba(200, 125, 92, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+
+  .thumbnail-link:hover .gallery-overlay {
+    background-color: rgba(182, 109, 77, 0.95);
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  .gallery-icon {
+    width: 32px;
+    height: 32px;
+  }
+</style>

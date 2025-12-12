@@ -1,0 +1,60 @@
+---
+// Hero section component
+---
+
+<section class="hero">
+  <div class="hero-container">
+    <h1 class="hero-title">Domenica Valencia</h1>
+    <p class="hero-subtitle">Videography • Photography • Software Engineer</p>
+    <p class="hero-description">
+      Creating visual narratives that capture authentic moments and tell compelling stories. 
+      Specializing in creative content for brands and communities.
+    </p>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: linear-gradient(135deg, #f5f1eb 0%, #ede7dd 100%);
+    padding: 6rem 1.5rem;
+    text-align: center;
+  }
+
+  .hero-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .hero-title {
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: 4rem 1.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .hero-description {
+      font-size: 1rem;
+    }
+  }
+</style>

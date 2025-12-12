@@ -1,0 +1,97 @@
+---
+// Company card component for collaborations
+import type { Company } from '../data/companies';
+
+interface Props {
+  company: Company;
+}
+
+const { company } = Astro.props;
+---
+
+<div class="company-card">
+  <div class="company-header">
+    <h3 class="company-name">{company.name}</h3>
+    <p class="company-description">{company.description}</p>
+  </div>
+  <div class="company-role">
+    <strong>{company.role}</strong>
+  </div>
+  <p class="company-work">{company.workHighlight}</p>
+  <div class="company-links">
+    {company.links.website && (
+      <a href={company.links.website} target="_blank" rel="noopener noreferrer" class="btn-secondary btn-small">
+        Website
+      </a>
+    )}
+    {company.links.instagram && (
+      <a href={company.links.instagram} target="_blank" rel="noopener noreferrer" class="btn-secondary btn-small">
+        Instagram
+      </a>
+    )}
+    {company.links.facebook && (
+      <a href={company.links.facebook} target="_blank" rel="noopener noreferrer" class="btn-secondary btn-small">
+        Facebook
+      </a>
+    )}
+    {company.links.youtube && (
+      <a href={company.links.youtube} target="_blank" rel="noopener noreferrer" class="btn-secondary btn-small">
+        YouTube
+      </a>
+    )}
+    {company.links.tiktok && (
+      <a href={company.links.tiktok} target="_blank" rel="noopener noreferrer" class="btn-secondary btn-small">
+        TikTok
+      </a>
+    )}
+  </div>
+</div>
+
+<style>
+  .company-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+  }
+
+  .company-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .company-header {
+    margin-bottom: 1rem;
+  }
+
+  .company-name {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+  }
+
+  .company-description {
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+
+  .company-role {
+    color: var(--accent);
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+  }
+
+  .company-work {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .company-links {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+</style>
